@@ -1,132 +1,183 @@
-🔥 PyraGuard AI - Real-Time Fire Detection System
-PythonYOLOv8FastAPIOpenCVReactViteTailwind CSS
-License
+# 🔥 PyraGuard AI – Real-Time Fire Detection System
 
-An enterprise-grade, high-performance AI Fire Detection System powered by YOLOv8, OpenCV, FastAPI, and React + Vite with Tailwind CSS. It delivers real-time fire detection across uploaded images, recorded videos, and live webcam streams with red bounding box overlays, confidence score metrics, visual alerts, and AI Voiceover speech warnings.
+PyraGuard AI is a real-time fire detection system powered by **YOLOv8** and **OpenCV**. It detects fire from **images, videos, and live webcam streams** with high-speed inference through a modern web interface.
 
-✨ Features
-📸 Image Fire Detection: Drag & drop upload for high-resolution images with side-by-side original vs annotated bounding box comparison and image download.
-🎥 Video Fire Detection: Frame-by-frame video processing with interactive browser video playback showing bounding box overlays and video download.
-📹 Live Webcam Stream: Low-latency, high-FPS webcam fire detection powered by continuous canvas stream analysis.
-🟥 Bounding Box Overlays: Draws bright red bounding boxes ((0, 0, 255)) with class labels and confidence percentages around detected fire regions.
-📢 AI Voiceover Alerts: Integrated Web Speech Synthesis that speaks "Warning! Emergency fire hazard detected!" when a flame signature exceeds the threshold.
-🔔 Visual & Sound Alarms: Pulsing red alert banner and Web Audio API tone synth.
-🎚️ Dynamic Threshold Slider: Interactive confidence threshold control (10% to 95%) to adjust detection sensitivity in real time.
-📊 Real-Time Metrics: Live statistics including total fire detections, max confidence score, FPS counter, and inference latency.
-🌙 Modern Dark-Themed UI: Futuristic cyberpunk glassmorphism layout with Lucide icons.
-🛠️ Tech Stack
-Layer	Technologies Used
-Artificial Intelligence	YOLOv8 (Ultralytics), PyTorch, OpenCV, NumPy
-Backend REST API	Python 3.10+, FastAPI, Uvicorn, Python-Multipart
-Frontend UI	React 18, Vite, Tailwind CSS, Lucide Icons, Axios
-Audio & Speech	Web Speech Synthesis API, Web Audio API
-📁 Repository Structure
-text
+---
 
-fire-detection-system/
+## 🚀 Features
+
+* 🔥 Real-Time Fire Detection
+* 📸 Image Detection
+* 🎥 Video Detection
+* 📹 Live Webcam Detection
+* 🎯 Bounding Boxes with Confidence Scores
+* ⚡ Fast YOLOv8 Inference
+* 🌐 FastAPI REST API
+* 💻 React + Vite Frontend
+* 🎨 Responsive UI with Tailwind CSS
+* 💾 Download Detection Results
+
+---
+
+## 🛠️ Tech Stack
+
+### AI & Backend
+
+* Python
+* YOLOv8 (Ultralytics)
+* OpenCV
+* FastAPI
+
+### Frontend
+
+* React
+* Vite
+* Tailwind CSS
+
+---
+
+## 📂 Project Structure
+
+```text
+PyraGuard-AI/
+│
 ├── backend/
-│   ├── main.py              # FastAPI server routes (/predict, /video, /webcam, /download)
-│   ├── detector.py          # YOLOv8 & OpenCV fire detection engine & hybrid HSV detector
-│   ├── init_model.py        # Custom YOLOv8 model initializer & weights generator (best.pt)
-│   ├── test_backend.py      # Unit test script for detection pipeline
-│   ├── requirements.txt     # Python backend dependencies
-│   ├── models/              # Saved YOLO model weights (best.pt)
-│   ├── uploads/             # Temporary folder for input files
-│   └── outputs/             # Export directory for processed images & videos
+│   ├── app.py
+│   ├── model.py
+│   ├── routes.py
+│   ├── uploads/
+│   ├── outputs/
+│   └── requirements.txt
 │
 ├── frontend/
-│   ├── index.html           # HTML5 document root
-│   ├── package.json         # Node.js dependencies
-│   ├── vite.config.js       # Vite build & proxy settings
-│   ├── tailwind.config.js   # Dark theme cyberpunk styles
-│   └── src/
-│       ├── main.jsx         # React DOM entrypoint
-│       ├── App.jsx          # Dashboard layout & tab router
-│       ├── index.css        # Global CSS & glassmorphism utilities
-│       ├── services/
-│       │   └── api.js       # Axios client pointing to http://localhost:8000
-│       └── components/
-│           ├── Navbar.jsx           # Top navigation bar & server status
-│           ├── ImageUpload.jsx      # Image upload workspace & download
-│           ├── VideoUpload.jsx      # Video upload & frame processing
-│           ├── WebcamStream.jsx     # Live webcam stream & real-time canvas
-│           ├── DetectionAlert.jsx   # Visual alert banner & AI voiceover
-│           ├── StatsCard.jsx        # Metric counter grid
-│           └── ThresholdSlider.jsx  # Confidence threshold slider
+│   ├── src/
+│   ├── public/
+│   ├── package.json
+│   └── vite.config.js
 │
-├── start_app.py             # Single-command launcher for backend & frontend
-└── README.md                # Documentation
-🚀 Quick Start & Installation
-Prerequisites
-Python 3.10+ installed
-Node.js 18+ and npm installed
-1. Clone the Repository
-bash
+├── models/
+│   └── best.pt
+│
+├── screenshots/
+├── README.md
+└── LICENSE
+```
 
-git clone https://github.com/your-username/fire-detection-system.git
-cd fire-detection-system
-2. Set Up Backend (FastAPI + YOLOv8)
-bash
+---
 
+## ⚙️ Installation
+
+### Clone the repository
+
+```bash
+git clone https://github.com/yourusername/PyraGuard-AI.git
+cd PyraGuard-AI
+```
+
+### Backend Setup
+
+```bash
 cd backend
+
+python -m venv venv
+
+# Windows
+venv\Scripts\activate
+
+# Linux/Mac
+source venv/bin/activate
+
 pip install -r requirements.txt
-python init_model.py
-3. Set Up Frontend (React + Vite)
-bash
 
-cd ../frontend
-npm install
-💻 Running the Application
-Option 1: Single-Command Launch (Recommended)
-Run the universal startup script from the project root:
+uvicorn app:app --reload
+```
 
-bash
+Backend runs on:
 
-python start_app.py
-Option 2: Run Servers Separately
-Start Backend Server:
+```text
+http://127.0.0.1:8000
+```
 
-bash
+---
 
-cd backend
-python main.py
-# Backend runs at: http://localhost:8000
-# OpenAPI Docs at: http://localhost:8000/docs
-Start Frontend Server:
+### Frontend Setup
 
-bash
-
+```bash
 cd frontend
+
+npm install
+
 npm run dev
-# Frontend runs at: http://localhost:5173
-📡 API Reference Endpoint Documentation
-Method	Endpoint	Description	Payload / Query
-GET	/health	Server health check and model status	N/A
-POST	/predict	Image fire detection	file (image), confidence (float 0.1-0.95)
-POST	/video	Video fire processing	file (video), confidence (float 0.1-0.95)
-POST	/webcam	Real-time webcam frame prediction	frame_data (base64 string or file), confidence
-GET	/download/{folder}/{filename}	Download processed image or video	Path variables
-Sample Response (POST /predict):
-json
+```
 
-{
-  "status": "success",
-  "filename": "fire_det_8a12b3c4.jpg",
-  "fire_detected": true,
-  "total_detections": 2,
-  "max_confidence": 0.92,
-  "inference_time_ms": 18.5,
-  "detections": [
-    {
-      "box": [230, 110, 410, 350],
-      "confidence": 0.92,
-      "label": "FIRE"
-    }
-  ],
-  "annotated_image": "data:image/jpeg;base64,...",
-  "download_url": "/download/outputs/fire_det_8a12b3c4.jpg"
-}
-📄 License
-Distributed under the MIT License. See LICENSE for more information.
+Frontend runs on:
 
-⭐ If you find this project helpful, please consider giving it a star on GitHub! ⭐
+```text
+http://localhost:5173
+```
+
+---
+
+## 📸 Supported Inputs
+
+* ✅ Images (.jpg, .png, .jpeg)
+* ✅ Videos (.mp4, .avi, .mov)
+* ✅ Live Webcam
+
+---
+
+## 🎯 Model
+
+This project uses a custom-trained **YOLOv8** model (`best.pt`) for fire detection.
+
+---
+
+## 📷 Demo
+
+Add screenshots or GIFs inside the `screenshots/` folder and display them here.
+
+Example:
+
+```markdown
+![Home](screenshots/home.png)
+
+![Detection](screenshots/detection.png)
+```
+
+---
+
+## 🔮 Future Improvements
+
+* SMS & Email Alerts
+* Push Notifications
+* Multi-Camera Monitoring
+* Cloud Deployment
+* Firebase Integration
+* Detection History Dashboard
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome.
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 👨‍💻 Author
+
+**Piyush Agar**
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
+
+Happy Coding! 🚀
